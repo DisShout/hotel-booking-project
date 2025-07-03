@@ -22,7 +22,7 @@ jobs:
       DB_NAME: hotel_booking
       DB_USER: postgres
       DB_PASSWORD: postgres
-      DB_HOST: localhost
+      DB_HOST: postgres
       DB_PORT: 5432
       SECRET_KEY: test_secret_key
       DEBUG: True
