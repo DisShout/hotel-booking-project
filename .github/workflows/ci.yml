@@ -17,12 +17,19 @@ jobs:
           POSTGRES_DB: hotel_booking
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     env:
       DB_NAME: hotel_booking
       DB_USER: postgres
       DB_PASSWORD: postgres
-      DB_HOST: postgres
+      DB_HOST: localhost
       DB_PORT: 5432
       SECRET_KEY: test_secret_key
       DEBUG: True
@@ -42,6 +49,13 @@ jobs:
     - name: Install dependencies
       run: |
         poetry install --no-root
+
+    - name: Wait for PostgreSQL
+      run: |
+        until pg_isready -h localhost -p 5432; do
+          echo "Waiting for PostgreSQL..."
+          sleep 2
+        done
 
     - name: Run migrations
       run: |
