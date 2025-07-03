@@ -18,4 +18,3 @@ repos:
       - id: check-yaml                 # проверка валидности YAML
       - id: check-json                 # проверка валидности JSON
       - id: debug-statements           # не даёт коммитить print() / pdb
-      - id: requirements-txt-fixer     # сортирует и чистит requirements.txt

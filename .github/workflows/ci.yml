@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:17.5
+        env:
+          POSTGRES_DB: hotel_booking
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+
+    env:
+      DB_NAME: hotel_booking
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: localhost
+      DB_PORT: 5432
+      SECRET_KEY: test_secret_key
+      DEBUG: True
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+
+    - name: Install Poetry
+      run: |
+        pip install poetry
+
+    - name: Install dependencies
+      run: |
+        poetry install
+
+    - name: Run migrations
+      run: |
+        poetry run python manage.py migrate
+
+    - name: Run tests
+      run: |
+        poetry run pytest --cov
+
+    - name: Run linter (ruff)
+      run: |
+        poetry run ruff .
