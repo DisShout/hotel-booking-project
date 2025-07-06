@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+*.egg-info/
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Pytest
+.pytest_cache/
+.coverage
+coverage/
+
+# Poetry
+poetry.lock
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
+
+# Environment variables
+.env
+
+# Docker
+*.log
+docker-compose.override.yml
+
+# Ruff cache
+ruff_cache/
+.ruff_cache/
+
+# Migrations (если не хочешь их коммитить сразу)
+# **/migrations/*.py
+# **/migrations/*.pyc
+
+# System files
+.DS_Store
+Thumbs.db

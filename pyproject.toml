@@ -1,0 +1,32 @@
+[project]
+name = "hotel-booking-project"
+version = "0.1.0"
+description = "API for hotel booking management"
+authors = [
+    {name = "DisShout",email = "disshout0524@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "django (>=5.2.2,<6.0.0)",
+    "djangorestframework (>=3.16.0,<4.0.0)",
+    "psycopg2-binary (>=2.9.10,<3.0.0)",
+    "python-decouple (>=3.8,<4.0)",
+    "gunicorn (>=23.0.0,<24.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.2.0"
+ruff = "^0.11.12"
+pytest = "^8.4.1"
+pytest-django = "^4.11.1"
+pytest-cov = "^6.2.1"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"  # замените на свой путь
+python_files = "test_*.py"
